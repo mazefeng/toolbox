@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# add the followng script into ~/.bashrc
+# alias rm=PATH_TO_THIS_SCRIPT/rm.sh
+# alias rmdir=PATH_TO_THIS_SCRIPT/rm.sh
+
+
 TRASH_ROOT=/home/mazefeng/trash
 
 for SOURCE_FULL_PATH in $@; do
