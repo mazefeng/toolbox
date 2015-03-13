@@ -1,6 +1,13 @@
 import sys
 import time
 
+'''
+This script implements a direct conversion from formatted string like '2015-03-13 15:46:24' to a standard unix timestamp.
+Compared to the traditional way as follow, this script is 5 times faster.
+    t = time.strptime(s, '%Y-%m-%d %H:%M:%S')
+    ts = int(time.mktime(t))
+'''
+
 D = 3600 * 24
 BJ_OFFSET = 3600 * 8
 
@@ -31,21 +38,21 @@ if __name__ == '__main__':
     # s = '2015-03-13 15:46:24'
     # ss = '1426232784'
 
-    T = range(0, 1420070400, 1654)
+    T = range(0, 1420070400, 1234)
     # T = T[0 : 10]
     S = list()
 
     for t in T:
         S.append(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(t)))
 
-    print >> sys.stderr, 'start'
+    print >> sys.stderr, 'Test on %d' % (len(S))
     
     start = time.time()
     for s in S:
-        t1 = time.strptime(s, '%Y-%m-%d %H:%M:%S')
-        t1 = int(time.mktime(t1)) 
-        # t2 = parser(s)
-        # print t1, t2
+        # t1 = time.strptime(s, '%Y-%m-%d %H:%M:%S')
+        # t1 = int(time.mktime(t1)) 
+        t2 = parser(s)
+        # if t1 != t2: print s, t1, t2
     terminate = time.time()
 
     print >> sys.stdout, terminate - start
